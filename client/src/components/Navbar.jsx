@@ -14,26 +14,42 @@ function Navbar() {
   // ==============================
   // LOAD USER FROM LOCAL STORAGE
   // ==============================
-  const loadUser = () => {
-    try {
-      const storedUser =
-        localStorage.getItem("user") ||
-        localStorage.getItem("currentUser") ||
-        localStorage.getItem("loggedInUser");
+  
+const loadUser = () => {
+  try {
+    const keys = ["user", "currentUser", "loggedInUser"];
+    let parsedUser = null;
 
-      if (!storedUser) {
-        setUser(null);
-        return;
+    for (const key of keys) {
+      const storedUser = localStorage.getItem(key);
+
+      if (
+        !storedUser ||
+        storedUser === "undefined" ||
+        storedUser === "null"
+      ) {
+        continue;
       }
 
-      const parsedUser = JSON.parse(storedUser);
+      try {
+        const value = JSON.parse(storedUser);
 
-      setUser(parsedUser);
-    } catch (error) {
-      console.error("Navbar user error:", error);
-      setUser(null);
+        if (value && typeof value === "object") {
+          parsedUser = value;
+          break;
+        }
+      } catch {
+        localStorage.removeItem(key);
+      }
     }
-  };
+
+    setUser(parsedUser);
+  } catch (error) {
+    console.error("Navbar user error:", error);
+    setUser(null);
+  }
+};
+
 
   // ==============================
   // LOAD CART COUNT

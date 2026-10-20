@@ -46,7 +46,7 @@ function Wishlist() {
       }
 
       const res = await axios.get(
-        `http://localhost:5000/api/wishlist/${userId}`
+        `https://trendywear-3uam.onrender.com/api/wishlist/${userId}`
       );
 
       setWishlist(res.data.wishlist || []);
@@ -62,7 +62,7 @@ function Wishlist() {
       const userId = user._id || user.id;
 
       await axios.delete(
-        `http://localhost:5000/api/wishlist/${userId}/${productId}`
+        `https://trendywear-3uam.onrender.com/api/wishlist/${userId}/${productId}`
       );
 
       setWishlist((current) =>
@@ -197,7 +197,7 @@ function Wishlist() {
                       }}
                     >
                       <img
-                        src={`http://localhost:5000${product.image}`}
+                        src={`https://trendywear-3uam.onrender.com${product.image}`}
                         alt={product.name}
                         style={{
                           width: "100%",

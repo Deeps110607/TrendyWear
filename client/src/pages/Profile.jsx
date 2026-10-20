@@ -28,7 +28,7 @@ function Profile() {
     setError('')
     setSuccess('')
     try {
-      const res = await axios.put('http://localhost:5000/api/auth/update', {
+      const res = await axios.put('https://trendywear-3uam.onrender.com/api/auth/update', {
         id: user._id,
         name: form.name,
         phone: form.phone,

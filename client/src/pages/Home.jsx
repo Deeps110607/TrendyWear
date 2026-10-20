@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import SmartSearch from "../components/SmartSearch";
-const API = "http://localhost:5000";
+const API = "https://trendywear-3uam.onrender.com";
 
 function Home() {
   const [products, setProducts] = useState([]);

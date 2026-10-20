@@ -23,7 +23,7 @@ function Register() {
     }
     try {
       setLoading(true)
-      const res = await axios.post('http://localhost:5000/api/auth/register', {
+      const res = await axios.post('https://trendywear-3uam.onrender.com/api/auth/register', {
         name: form.name,
         email: form.email,
         phone: form.phone,

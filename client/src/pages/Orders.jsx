@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const API = "http://localhost:5000";
+const API = "https://trendywear-3uam.onrender.com";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 
-const API = "http://localhost:5000";
+const API = "https://trendywear-3uam.onrender.com";
 
 function SmartSearch({
   products = [],

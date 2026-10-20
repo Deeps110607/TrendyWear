@@ -16,7 +16,7 @@ function AddProduct() {
 const loadCategories = async () => {
   try {
     const res = await axios.get(
-      "http://localhost:5000/api/categories"
+      "https://trendywear-3uam.onrender.com/api/categories"
     );
 
     setCategories(res.data.categories);
@@ -126,7 +126,7 @@ const loadCategories = async () => {
       data.append("isFeatured", form.featured);
 
       const res = await axios.post(
-  "http://localhost:5000/api/products",
+  "https://trendywear-3uam.onrender.com/api/products",
   data,
   {
     headers: {

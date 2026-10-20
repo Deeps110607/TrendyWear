@@ -71,7 +71,7 @@ function Complaints() {
       setError("");
 
       const res = await axios.get(
-        `http://localhost:5000/api/complaints/${userId}`
+        `https://trendywear-3uam.onrender.com/api/complaints/${userId}`
       );
 
       console.log("Complaints:", res.data);
@@ -125,7 +125,7 @@ function Complaints() {
 
     try {
       await axios.post(
-        "http://localhost:5000/api/complaints",
+        "https://trendywear-3uam.onrender.com/api/complaints",
         {
           userId: userId,
           name: user.name,

@@ -7,15 +7,22 @@ require("dotenv").config();
 
 const app = express();
 
-// ======================================
-// CORS CONFIGURATION - MUST COME FIRST
-// ======================================
+// CORS CONFIGURATION
+const allowedOrigins = [
+  "http://localhost:3000",
+  "http://127.0.0.1:3000",
+  "https://trendywear-kappa.vercel.app",
+];
+
 app.use(
   cors({
-    origin: [
-      "http://localhost:3000",
-      "http://127.0.0.1:3000",
-    ],
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error("Origin not allowed by CORS"));
+    },
     methods: [
       "GET",
       "POST",
@@ -28,24 +35,21 @@ app.use(
       "Content-Type",
       "Authorization",
     ],
+    credentials: true,
   })
 );
 
-// ======================================
 // MIDDLEWARE
-// ======================================
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve uploaded product images
+// SERVE UPLOADED PRODUCT IMAGES
 app.use(
   "/uploads",
   express.static(path.join(__dirname, "uploads"))
 );
 
-// ======================================
 // API ROUTES
-// ======================================
 app.use("/api/ai", require("./routes/ai"));
 app.use("/api/users", require("./routes/users"));
 app.use("/api/orders", require("./routes/orders"));
@@ -56,9 +60,7 @@ app.use("/api/complaints", require("./routes/complaints"));
 app.use("/api/products", require("./routes/products"));
 app.use("/api/categories", require("./routes/categories"));
 
-// ======================================
 // HOME ROUTE
-// ======================================
 app.get("/", (req, res) => {
   res.json({
     success: true,
@@ -66,9 +68,7 @@ app.get("/", (req, res) => {
   });
 });
 
-// ======================================
 // ERROR HANDLER
-// ======================================
 app.use((err, req, res, next) => {
   console.error("Server Error:", err);
 
@@ -78,25 +78,20 @@ app.use((err, req, res, next) => {
   });
 });
 
-// ======================================
 // DATABASE CONNECTION
-// ======================================
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
     console.log("✅ MongoDB Connected");
   })
   .catch((err) => {
-    console.error("❌ MongoDB Connection Error:");
-    console.error(err);
+    console.error("❌ MongoDB Connection Error:", err);
   });
 
-// ======================================
 // START SERVER
-// ======================================
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
   console.log(`✅ TrendyWear Server Running on Port ${PORT}`);
-  console.log("✅ CORS configured for http://localhost:3000");
+  console.log("✅ CORS configured for Vercel and localhost");
 });

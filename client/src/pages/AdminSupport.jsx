@@ -17,7 +17,7 @@ function AdminSupport() {
       setLoading(true);
 
       const res = await axios.get(
-        "http://localhost:5000/api/complaints"
+        "https://trendywear-3uam.onrender.com/api/complaints"
       );
 
       setComplaints(res.data || []);
@@ -51,7 +51,7 @@ function AdminSupport() {
 
   try {
     const res = await axios.put(
-      `http://localhost:5000/api/complaints/${id}/reply`,
+      `https://trendywear-3uam.onrender.com/api/complaints/${id}/reply`,
       {
         adminReply: replyText.trim(),
       }
@@ -86,7 +86,7 @@ function AdminSupport() {
   const changeStatus = async (id, newStatus) => {
     try {
       await axios.put(
-        `http://localhost:5000/api/complaints/${id}/status`,
+        `https://trendywear-3uam.onrender.com/api/complaints/${id}/status`,
         {
           status: newStatus,
         }

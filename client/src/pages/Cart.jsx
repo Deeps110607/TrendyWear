@@ -652,7 +652,7 @@ const Cart = () => {
                 <p>Scan to pay</p>
 
                 <img
-                  src="/payment-scanner.png"
+                  src="/payment-scanner.jpg"
                   alt="Payment Scanner"
                   style={{
                     width: "220px",

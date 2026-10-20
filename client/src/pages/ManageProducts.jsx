@@ -38,8 +38,8 @@ function ManageProducts() {
       setLoading(true);
 
       const [productRes, categoryRes] = await Promise.all([
-        axios.get("http://localhost:5000/api/products"),
-        axios.get("http://localhost:5000/api/categories"),
+        axios.get("https://trendywear-3uam.onrender.com/api/products"),
+        axios.get("https://trendywear-3uam.onrender.com/api/categories"),
       ]);
 
       setProducts(productRes.data || []);
@@ -148,7 +148,7 @@ function ManageProducts() {
       };
 
       const res = await axios.put(
-        `http://localhost:5000/api/products/${editingProduct._id}`,
+        `https://trendywear-3uam.onrender.com/api/products/${editingProduct._id}`,
         updatedProduct
       );
 
@@ -187,7 +187,7 @@ function ManageProducts() {
 
     try {
       await axios.delete(
-        `http://localhost:5000/api/products/${id}`
+        `https://trendywear-3uam.onrender.com/api/products/${id}`
       );
 
       // Remove from current screen immediately
@@ -707,7 +707,7 @@ function ManageProducts() {
                         <td className="p-3">
 
                           <img
-                            src={`http://localhost:5000${product.image}`}
+                            src={`https://trendywear-3uam.onrender.com${product.image}`}
                             alt={product.name}
                             style={{
                               width: "70px",

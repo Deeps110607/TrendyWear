@@ -7,7 +7,7 @@ function Categories() {
   const [categories, setCategories] = useState([]);
 
   const loadCategories = async () => {
-    const res = await axios.get("http://localhost:5000/api/categories");
+    const res = await axios.get("https://trendywear-3uam.onrender.com/api/categories");
     setCategories(res.data.categories);
   };
 
@@ -24,7 +24,7 @@ function Categories() {
       return;
     }
 
-    await axios.post("http://localhost:5000/api/categories", {
+    await axios.post("https://trendywear-3uam.onrender.com/api/categories", {
       name,
     });
 
@@ -39,7 +39,7 @@ function Categories() {
     if (!window.confirm("Delete this category?")) return;
 
     await axios.delete(
-      `http://localhost:5000/api/categories/${id}`
+      `https://trendywear-3uam.onrender.com/api/categories/${id}`
     );
 
     loadCategories();

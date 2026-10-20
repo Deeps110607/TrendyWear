@@ -764,7 +764,7 @@ window.dispatchEvent(new Event("cartUpdated"));
                 </p>
 
                 <img
-                  src="/payment-scanner.jpg"
+                  src="/payment-scanner.jpeg"
                   alt="Payment Scanner"
                   style={{
                     width: "220px",

@@ -98,14 +98,18 @@ const Orders = () => {
   // IMAGE URL
   // =====================================================
   const getImageUrl = (image) => {
-    if (!image) return "";
+  if (!image) return "";
 
-    if (image.startsWith("http")) {
-      return image;
-    }
+  const imageUrl = String(image).trim();
 
-    return `${API}${image}`;
-  };
+  // Cloudinary or any other absolute image URL
+  if (/^https?:\/\//i.test(imageUrl)) {
+    return imageUrl;
+  }
+
+  // Legacy images stored as relative backend paths
+  return `${API.replace(/\/+$/, "")}/${imageUrl.replace(/^\/+/, "")}`;
+};
 
   return (
     <div

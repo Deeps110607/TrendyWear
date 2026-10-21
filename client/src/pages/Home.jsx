@@ -920,7 +920,11 @@ function ProductCard({
       >
 
         <img
-          src={`${API}${item.image}`}
+  src={
+    item.image?.startsWith("http")
+      ? item.image
+      : `${API}${item.image || ""}`
+  }
           alt={item.name}
           style={{
             width: "100%",

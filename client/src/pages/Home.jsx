@@ -633,7 +633,11 @@ window.dispatchEvent(new Event("cartUpdated"));
             >
 
               <img
-                src={`${API}${paymentProduct.image}`}
+                src={
+  paymentProduct.image?.startsWith("http")
+    ? paymentProduct.image
+    : `${API}${paymentProduct.image || ""}`
+}
                 alt={paymentProduct.name}
                 style={{
                   width: "80px",

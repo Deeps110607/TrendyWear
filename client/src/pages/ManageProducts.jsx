@@ -707,7 +707,11 @@ function ManageProducts() {
                         <td className="p-3">
 
                           <img
-                            src={`https://trendywear-3uam.onrender.com${product.image}`}
+                            src={
+  product.image?.startsWith("http")
+    ? product.image
+    : `https://trendywear-3uam.onrender.com${product.image || ""}`
+}
                             alt={product.name}
                             style={{
                               width: "70px",

@@ -372,7 +372,11 @@ const Cart = () => {
                 >
                   {/* IMAGE */}
                   <img
-                    src={`${API}${product.image}`}
+                    src={
+  product.image?.startsWith("http")
+    ? product.image
+    : `${API}${product.image || ""}`
+}
                     alt={product.name}
                     style={{
                       width: "110px",
